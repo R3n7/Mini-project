@@ -1,0 +1,3 @@
+gmail[ENTER]
+[ALT][TAB]v[CTRL][LEFT][BACKSPACE]ls[ENTER]
+
